@@ -1,0 +1,621 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="SQL2012-1\sqladmin"
+  DTS:CreatorComputerName="SQL2012-1"
+  DTS:CreationDate="12/20/2017 11:55:56 PM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{1AFDDA76-29EF-4340-A3C7-E52E7999BF6C}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:DTSID="{DBE4DB6E-300F-427E-A75F-C6A09EB9FE40}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:ObjectName="Flat File Connection Manager"
+      DTS:DTSID="{46DC2B3A-8DAD-4827-9219-D53CA0385CA2}"
+      DTS:CreationName="FLATFILE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\sqladmin\Documents\Products.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="40"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductName"
+              DTS:DTSID="{37469FEA-2C4B-48FD-9E8D-FA38C198D662}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product Data.CategoryName"
+              DTS:DTSID="{0378BD45-D3EB-43E7-9152-ABCF08FB1EB9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="UnitsOnOrder"
+              DTS:DTSID="{D79A9079-2522-429D-8DDE-09F807E4A1E3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="6"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Product Data.UnitPrice"
+              DTS:DTSID="{F364006A-C76F-429B-9B52-86450C8DF6A7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="15"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Derived Column.CategoryName"
+              DTS:DTSID="{F9CC8E97-8158-4112-A269-C207E72AD0A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="11"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Derived Column.UnitPrice"
+              DTS:DTSID="{52431538-8F8C-4B4E-9ABA-6BE98324A15A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQL2012-1.GreenGrocerDB]"
+      DTS:ObjectName="SQL2012-1.GreenGrocerDB"
+      DTS:DTSID="{37BA938C-222B-4AEE-A463-18A57FAC8F07}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQL2012-1;Initial Catalog=GreenGrocerDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export Product Data"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export Product Data"
+      DTS:DTSID="{E89B9520-280D-4584-9B60-A39157E40E7A}"
+      DTS:Description="Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export Product Data\Derived Column"
+              name="Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              usesDispositions="true"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0">
+              <inputs>
+                <input
+                  refId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input]"
+                  name="Derived Column Input"
+                  description="Input to the Derived Column Transformation">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input].Columns[CategoryName]"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      cachedName="CategoryName"
+                      cachedDataType="wstr"
+                      cachedLength="15" />
+                    <inputColumn
+                      refId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      cachedName="UnitPrice"
+                      cachedDataType="cy" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output]"
+                  name="Derived Column Output"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[CategoryName]"
+                      length="15"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          name="Expression"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          containsID="true">[UPPER](#{Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[CategoryName]})</property>
+                        <property
+                          name="FriendlyExpression"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          containsID="true"
+                          expressionType="Notify">UPPER(CategoryName)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[UnitPrice]"
+                      length="11"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          name="Expression"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          containsID="true">"$" + (DT_STR,10,1252)(DT_CY)#{Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitPrice]}</property>
+                        <property
+                          name="FriendlyExpression"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          containsID="true"
+                          expressionType="Notify">"$" + (DT_STR,10,1252)(DT_CY)UnitPrice</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Error Output]"
+                  name="Derived Column Error Output"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  synchronousInputId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input]"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export Product Data\Flat File Destination"
+              name="Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              description="Flat File Destination"
+              localeId="1033"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0">
+              <properties>
+                <property
+                  name="Overwrite"
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file.">true</property>
+                <property
+                  name="Header"
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Product Data\Flat File Destination.Connections[FlatFileConnection]"
+                  name="FlatFileConnection"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input]"
+                  name="Flat File Destination Input"
+                  hasSideEffects="true">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[ProductName]"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      externalMetadataColumnId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ProductName]"
+                      cachedName="ProductName"
+                      cachedDataType="wstr"
+                      cachedLength="40" />
+                    <inputColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[UnitsOnOrder]"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      externalMetadataColumnId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[UnitsOnOrder]"
+                      cachedName="UnitsOnOrder"
+                      cachedDataType="i2" />
+                    <inputColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[CategoryName]"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[CategoryName]"
+                      externalMetadataColumnId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Derived Column.CategoryName]"
+                      cachedName="CategoryName"
+                      cachedDataType="wstr"
+                      cachedLength="15" />
+                    <inputColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[UnitPrice]"
+                      lineageId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output].Columns[UnitPrice]"
+                      externalMetadataColumnId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Derived Column.UnitPrice]"
+                      cachedName="UnitPrice"
+                      cachedDataType="wstr"
+                      cachedLength="11" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ProductName]"
+                      name="ProductName"
+                      dataType="wstr"
+                      length="40" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Product Data.CategoryName]"
+                      name="Product Data.CategoryName"
+                      dataType="wstr"
+                      length="15" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      dataType="i2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Product Data.UnitPrice]"
+                      name="Product Data.UnitPrice"
+                      dataType="cy" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Derived Column.CategoryName]"
+                      name="Derived Column.CategoryName"
+                      dataType="wstr"
+                      length="15" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Derived Column.UnitPrice]"
+                      name="Derived Column.UnitPrice"
+                      dataType="wstr"
+                      length="11" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export Product Data\Product Data"
+              name="Product Data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              description="OLE DB Source"
+              usesDispositions="true"
+              version="7"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7">
+              <properties>
+                <property
+                  name="CommandTimeout"
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out.">0</property>
+                <property
+                  name="OpenRowset"
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."></property>
+                <property
+                  name="OpenRowsetVariable"
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."></property>
+                <property
+                  name="SqlCommand"
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Products.ProductName, Categories.CategoryName, Products.UnitsOnOrder, Products.UnitPrice
+FROM dbo.Products INNER JOIN dbo.Categories
+ON Products.CategoryID = Categories.CategoryID</property>
+                <property
+                  name="SqlCommandVariable"
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."></property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source.">1252</property>
+                <property
+                  name="AlwaysUseDefaultCodePage"
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data.">false</property>
+                <property
+                  name="AccessMode"
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  typeConverter="AccessMode">2</property>
+                <property
+                  name="ParameterMapping"
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Product Data\Product Data.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="The OLE DB runtime connection used to access the database."
+                  connectionManagerID="Package.ConnectionManagers[SQL2012-1.GreenGrocerDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SQL2012-1.GreenGrocerDB]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      length="40"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[ProductName]" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      length="15"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      name="ProductName"
+                      dataType="wstr"
+                      length="40" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      name="CategoryName"
+                      dataType="wstr"
+                      length="15" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      dataType="i2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      name="UnitPrice"
+                      dataType="cy" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output]"
+                  name="OLE DB Source Error Output"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      name="ProductName"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      length="40"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      length="15"
+                      dataType="wstr" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      dataType="i2" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export Product Data.Paths[Derived Column Output]"
+              name="Derived Column Output"
+              startId="Package\Export Product Data\Derived Column.Outputs[Derived Column Output]"
+              endId="Package\Export Product Data\Flat File Destination.Inputs[Flat File Destination Input]" />
+            <path
+              refId="Package\Export Product Data.Paths[OLE DB Source Output]"
+              name="OLE DB Source Output"
+              startId="Package\Export Product Data\Product Data.Outputs[OLE DB Source Output]"
+              endId="Package\Export Product Data\Derived Column.Inputs[Derived Column Input]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="172.666666666667,42"
+          Id="Package\Export Product Data"
+          TopLeft="18.6666663686434,92.2666649929683" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export Product Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139.333333333334,42"
+          Id="Package\Export Product Data\Product Data"
+          TopLeft="16.9999997268121,80.9999985277653" />
+        <NodeLayout
+          Size="152.666666666667,42"
+          Id="Package\Export Product Data\Derived Column"
+          TopLeft="39.4999993915359,171.999996900559" />
+        <EdgeLayout
+          Id="Package\Export Product Data.Paths[OLE DB Source Output]"
+          TopLeft="86.6666663934787,122.999998527765">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.1666663313905,48.9999983727932"
+              Start="0,0"
+              End="29.1666663313905,41.4999983727932">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4999991863966" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4999991863966"
+                    Point2="0,24.4999991863966"
+                    Point3="4,24.4999991863966" />
+                  <mssgle:LineSegment
+                    End="25.1666663313905,24.4999991863966" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.1666663313905,24.4999991863966"
+                    Point2="29.1666663313905,24.4999991863966"
+                    Point3="29.1666663313905,28.4999991863966" />
+                  <mssgle:LineSegment
+                    End="29.1666663313905,41.4999983727932" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.666666666667,42"
+          Id="Package\Export Product Data\Flat File Destination"
+          TopLeft="76.1666655118267,247.299996102452" />
+        <EdgeLayout
+          Id="Package\Export Product Data.Paths[Derived Column Output]"
+          TopLeft="115.833332724869,213.999996900559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.6666661202908,33.2999992018939"
+              Start="0,0"
+              End="45.6666661202908,25.7999992018939">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6499996009469" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6499996009469"
+                    Point2="0,16.6499996009469"
+                    Point3="4,16.6499996009469" />
+                  <mssgle:LineSegment
+                    End="41.6666661202908,16.6499996009469" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.6666661202908,16.6499996009469"
+                    Point2="45.6666661202908,16.6499996009469"
+                    Point3="45.6666661202908,20.6499996009469" />
+                  <mssgle:LineSegment
+                    End="45.6666661202908,25.7999992018939" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export Product Data\Product Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

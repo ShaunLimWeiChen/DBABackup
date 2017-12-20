@@ -1,0 +1,3 @@
+SELECT Products.ProductName, Categories.CategoryName, Products.UnitsOnOrder, Products.UnitPrice
+FROM dbo.Products INNER JOIN dbo.Categories
+ON Products.CategoryID = Categories.CategoryID
